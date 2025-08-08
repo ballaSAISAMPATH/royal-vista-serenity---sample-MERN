@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
+// src/hooks/useScrollAnimation.js
+
+import { useEffect } from 'react';
 
 export const useScrollAnimation = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
           }
         });
       },
@@ -18,13 +19,11 @@ export const useScrollAnimation = () => {
       }
     );
 
-    const elements = document.querySelectorAll('.fade-in-up');
+    const elements = document.querySelectorAll('.fade-in-up, .slide-in-on-scroll, .slide-in-from-right-on-scroll');
     elements.forEach((el) => observer.observe(el));
 
     return () => {
       elements.forEach((el) => observer.unobserve(el));
     };
   }, []);
-
-  return isVisible;
 };

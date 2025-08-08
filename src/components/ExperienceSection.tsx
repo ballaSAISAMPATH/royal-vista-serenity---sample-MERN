@@ -54,10 +54,13 @@ const ExperienceSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {experiences.map((experience, index) => {
             const IconComponent = experience.icon;
+            // This logic alternates the animation direction
+            const animationClass = index % 2 === 0 ? 'slide-in-on-scroll' : 'slide-in-from-right-on-scroll';
+
             return (
               <div
                 key={experience.title}
-                className="group relative overflow-hidden rounded-2xl luxury-hover fade-in-up"
+                className={`group relative overflow-hidden rounded-2xl luxury-hover ${animationClass}`}
                 style={{ animationDelay: `${index * 200}ms` }}
               >
                 {/* Card Background */}

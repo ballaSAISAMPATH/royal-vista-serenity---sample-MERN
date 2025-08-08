@@ -1,14 +1,25 @@
+// src/components/BookingWidget.jsx
+
+"use client";
+
 import { useState } from "react";
-import { Calendar, Users, Search, Star, Award, Shield } from "lucide-react";
+import { Calendar, Users, Search, ChevronUp, ChevronDown, Star, Award, Shield } from "lucide-react";
 import { LuxuryButton } from "@/components/ui/luxury-button";
 
-const BookingWidget = () => {
+// This component is now controlled by props from its parent
+const BookingWidget = ({ isOpen, setIsOpen }) => {
   const [guests, setGuests] = useState(2);
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
 
   return (
-    <div className="fixed top-20 right-4 z-50 hidden lg:block">
+    <div
+      className={`fixed top-20 right-4 z-50 transition-all duration-500 ease-in-out lg:block ${
+        isOpen
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-4 pointer-events-none"
+      }`}
+    >
       <div className="glass-card w-80 p-6 animate-fade-in-up">
         <h3 className="font-serif text-xl font-semibold text-luxury-cream mb-4">
           Reserve Your Stay
@@ -33,13 +44,13 @@ const BookingWidget = () => {
         <div className="space-y-4">
           {/* Check-in Date */}
           <div>
-            <label className="block text-luxury-cream/70 text-sm mb-2">Check-in</label>
+            <label className="block text text-luxury-cream/70 text-sm mb-2">Check-in</label>
             <div className="relative">
               <input
                 type="date"
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
-                className="w-full glass rounded-lg p-3 text-luxury-cream placeholder-luxury-cream/50 border-0 focus:ring-2 focus:ring-luxury-gold"
+                className="w-full glass rounded-lg p-3 text-black placeholder-luxury-cream/50 border-0 focus:ring-2 focus:ring-luxury-gold"
               />
               <Calendar className="absolute right-3 top-3 w-5 h-5 text-luxury-gold pointer-events-none" />
             </div>
@@ -53,7 +64,7 @@ const BookingWidget = () => {
                 type="date"
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
-                className="w-full glass rounded-lg p-3 text-luxury-cream placeholder-luxury-cream/50 border-0 focus:ring-2 focus:ring-luxury-gold"
+                className="w-full glass rounded-lg p-3 text-black placeholder-luxury-cream/50 border-0 focus:ring-2 focus:ring-luxury-gold"
               />
               <Calendar className="absolute right-3 top-3 w-5 h-5 text-luxury-gold pointer-events-none" />
             </div>
@@ -69,7 +80,7 @@ const BookingWidget = () => {
                 className="w-full glass rounded-lg p-3 text-luxury-cream bg-transparent border-0 focus:ring-2 focus:ring-luxury-gold appearance-none"
               >
                 {[1, 2, 3, 4, 5, 6, 7, 8].map(num => (
-                  <option key={num} value={num} className="bg-luxury-navy text-luxury-cream">
+                  <option key={num} value={num} className="bg-gray-900 text-luxury-cream">
                     {num} Guest{num > 1 ? 's' : ''}
                   </option>
                 ))}

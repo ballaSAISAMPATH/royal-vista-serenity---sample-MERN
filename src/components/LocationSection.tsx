@@ -1,3 +1,5 @@
+// src/components/LocationSection.jsx
+
 import { MapPin, Clock, Car, Plane } from "lucide-react";
 import { LuxuryButton } from "@/components/ui/luxury-button";
 import mountainRoadImage from "@/assets/mountain-road.jpg";
@@ -24,7 +26,7 @@ const LocationSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="fade-in-up">
+          <div className="slide-in-on-scroll">
             <div className="glass-card inline-flex items-center gap-2 mb-6">
               <MapPin className="w-5 h-5 text-luxury-gold" />
               <span className="text-luxury-cream font-medium">Prime Location</span>
@@ -78,8 +80,8 @@ const LocationSection = () => {
             </LuxuryButton>
           </div>
 
-          {/* Right Content - Interactive Map Area */}
-          <div className="fade-in-up" style={{ animationDelay: '300ms' }}>
+          {/* Right Content - Now slides from the right */}
+          <div className="slide-in-from-right-on-scroll" style={{ animationDelay: '300ms' }}>
             <div className="glass-card p-8 text-center">
               <div className="w-full h-64 bg-gradient-to-br from-luxury-gold/20 to-luxury-navy/20 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden">
                 {/* Map Placeholder with Animation */}
